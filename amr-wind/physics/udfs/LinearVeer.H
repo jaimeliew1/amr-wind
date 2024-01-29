@@ -17,7 +17,7 @@ struct LinearVeer
         // clang-format off
         // Declare parameters here if needed. For example:
         amrex::Real foo{1.0};
-        amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> bar = {0.0};
+        // amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> bar = {0.0};
         // clang-format on
 
         AMREX_GPU_DEVICE

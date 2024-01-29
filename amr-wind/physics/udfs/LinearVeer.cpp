@@ -21,12 +21,12 @@ LinearVeer::LinearVeer(const Field& fld)
        const int ncomp = fld.num_comp();
        amrex::ParmParse pp("LinearVeer");
        pp.query("foo", m_op.foo);
-       amrex::Vector<amrex::Real> vel(0.0, ncomp);
-       pp.getarr("velocity", vel);
-       AMREX_ALWAYS_ASSERT(vel.size() == ncomp);
-       for (int i = 0; i < ncomp; ++i) {
-           m_op.bar[i] = vel[i];
-       }
+    //    amrex::Vector<amrex::Real> vel(0.0, ncomp);
+    //    pp.getarr("velocity", vel);
+    //    AMREX_ALWAYS_ASSERT(vel.size() == ncomp);
+    //    for (int i = 0; i < ncomp; ++i) {
+    //        m_op.bar[i] = vel[i];
+    //    }
     //}
     // clang-format on
 
