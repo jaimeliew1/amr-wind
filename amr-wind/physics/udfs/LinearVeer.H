@@ -42,7 +42,7 @@ struct LinearVeer
 
             // Once the above is done, fill the field as:
             field(iv[0], iv[1], iv[2], dcomp + comp) = vel[orig_comp + comp];
-            std::cout << "hello, Jaime here. this is foo" << foo << std::endl;
+            // std::cout << "hello, Jaime here. this is foo" << foo << std::endl;
             // clang-format on
         }
     };
