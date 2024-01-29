@@ -5,6 +5,7 @@
 #include "amr-wind/physics/udfs/PowerLawProfile.H"
 #include "amr-wind/physics/udfs/BurggrafLid.H"
 #include "amr-wind/physics/udfs/Rankine.H"
+#include "amr-wind/physics/udfs/LinearVeer.H"
 #include "amr-wind/physics/udfs/CustomVelocity.H"
 #include "amr-wind/physics/udfs/CustomScalar.H"
 
@@ -61,6 +62,7 @@ template class UDFImpl<LinearProfile>;
 template class UDFImpl<PowerLawProfile>;
 template class UDFImpl<BurggrafLid>;
 template class UDFImpl<Rankine>;
+template class UDFImpl<LinearVeer>;
 template class UDFImpl<CustomVelocity>;
 template class UDFImpl<CustomScalar>;
 
