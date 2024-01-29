@@ -46,7 +46,7 @@ struct LinearVeer
             const auto y = problo[1] + (iv[1] + 0.5) * dx[1];
             const auto z = problo[2] + (iv[2] + 0.5) * dx[2];
 
-            const amrex::Real alpha = amplitude * std::tanh((z - Lz / 2.0) / D) * pi() / 180;
+            const amrex::Real alpha = amplitude * std::tanh((z - Lz / 2.0) / D) * utils::pi() / 180;
             const amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> vel = {Uinf * std::cos(alpha), Uinf * std::sin(alpha), 0.0};
 
 
