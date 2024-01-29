@@ -1,6 +1,7 @@
 #ifndef LINEAR_VEER_H
 #define LINEAR_VEER_H
 
+#include <cmath>
 #include "AMReX_Geometry.H"
 #include "AMReX_Gpu.H"
 
@@ -14,11 +15,17 @@ struct LinearVeer
 {
     struct DeviceOp
     {
-        // clang-format off
-        // Declare parameters here if needed. For example:
-        amrex::Real foo{1.0};
-        // amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> bar = {0.0};
-        // clang-format on
+
+        amrex::Real amplitude{1.0};
+        amrex::Real Lz{1.0};
+        amrex::Real D{1.0};
+        amrex::Real Uinf{1.0};
+        /*
+        LinearVeer.amplitude = 1.0
+        LinearVeer.Lz = 1.0
+        LinearVeer.D = 1.0
+        LinearVeer.Uinf = 1.0
+        */
 
         AMREX_GPU_DEVICE
         inline void operator()(
@@ -31,19 +38,19 @@ struct LinearVeer
             const int dcomp,
             const int orig_comp) const
         {
-            // Compute quantities to set the field values. For example:
-            // clang-format off
+
             const auto* problo = geom.ProbLo();
             const auto* dx = geom.CellSize();
             const auto x = problo[0] + (iv[0] + 0.5) * dx[0];
             const auto y = problo[1] + (iv[1] + 0.5) * dx[1];
             const auto z = problo[2] + (iv[2] + 0.5) * dx[2];
-            const amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> vel = {1.0, 0.0, 0.0};
 
-            // Once the above is done, fill the field as:
+            const amrex::Real alpha = amplitude * std::tanh((z - Lz / 2.0) / D);
+            const amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> vel = {Uinf * std::cos(alpha), Uinf * std::sin(alpha), 0.0};
+
+
             field(iv[0], iv[1], iv[2], dcomp + comp) = vel[orig_comp + comp];
-            // std::cout << "hello, Jaime here. this is foo" << foo << std::endl;
-            // clang-format on
+
         }
     };
     using DeviceType = DeviceOp;
